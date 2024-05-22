@@ -1,103 +1,96 @@
 #include <iostream>
+
 using namespace std;
 
-struct Pembayaran
+struct Buku
 {
-    string namaPelanggan, nomorTagihan;
-    double jumlahTagihan;
-    Pembayaran *next;
+    string judul, pengarang;
+    int thn;
+
+    Buku *next;
 };
 
-Pembayaran *kepala, *buntut, *cur, *nodeBaru, *busek;
+Buku *kepala, *bt, *ini, *nodeBaru, *busek;
 
-void ngisiLinkedList(string namaPelanggan, string nomorTagihan, double jumlahTagihan)
-{
-    kepala = new Pembayaran();
-    kepala->namaPelanggan = namaPelanggan;
-    kepala->nomorTagihan = nomorTagihan;
-    kepala->jumlahTagihan = jumlahTagihan;
+void ngisiLinkedlist (string judul, string pengarang, int thn) {
+    kepala = new Buku();
+    kepala->judul = judul;
+    kepala->pengarang = pengarang;
+    kepala->thn = thn;
     kepala->next = NULL;
-    buntut = kepala;
+    bt = kepala;    
 }
 
-void tambahAwal(string namaPelanggan, string nomorTagihan, double jumlahTagihan)
-{
-    nodeBaru = new Pembayaran();
-    nodeBaru->namaPelanggan = namaPelanggan;
-    nodeBaru->nomorTagihan = nomorTagihan;
-    nodeBaru->jumlahTagihan = jumlahTagihan;
+void tambahAwal (string judul, string pengarang, int thn) {
+    nodeBaru = new Buku();
+    nodeBaru->judul = judul;
+    nodeBaru->pengarang = pengarang;
+    nodeBaru->thn = thn;
     nodeBaru->next = kepala;
     kepala = nodeBaru;
 }
 
-void tambahGuri(string namaPelanggan, string nomorTagihan, double jumlahTagihan)
-{
-    nodeBaru = new Pembayaran();
-    nodeBaru->namaPelanggan = namaPelanggan;
-    nodeBaru->nomorTagihan = nomorTagihan;
-    nodeBaru->jumlahTagihan = jumlahTagihan;
+void tambahGuri (string judul, string pengarang, int thn) {
+    nodeBaru = new Buku();
+    nodeBaru->judul = judul;
+    nodeBaru->pengarang = pengarang;
+    nodeBaru->thn = thn;
     nodeBaru->next = NULL;
-    buntut->next = nodeBaru;
-    buntut = nodeBaru;
+    bt->next = nodeBaru;
+    bt = nodeBaru;
 }
 
-void ubahAwal(string namaPelanggan, string nomorTagihan, double jumlahTagihan)
-{
-    kepala->namaPelanggan = namaPelanggan;
-    kepala->nomorTagihan = nomorTagihan;
-    kepala->jumlahTagihan = jumlahTagihan;
+void ubahAwal(string judul, string pengarang, int thn){
+    kepala->judul = judul;
+    kepala->pengarang = pengarang;
+    kepala->thn = thn;
+}
+void ubahLast(string judul, string pengarang, int thn){
+    bt->judul = judul;
+    bt->pengarang = pengarang;
+    bt->thn = thn;
 }
 
-void ubahLast(string namaPelanggan, string nomorTagihan, double jumlahTagihan)
-{
-    buntut->namaPelanggan = namaPelanggan;
-    buntut->nomorTagihan = nomorTagihan;
-    buntut->jumlahTagihan = jumlahTagihan;
-}
-
-void hapusAwal()
-{
+void hapusAwal () {
     busek = kepala;
     kepala = kepala->next;
     delete busek;
 }
 
-void hapusLast()
-{
-    busek = buntut;
-    cur = kepala;
-    while (cur->next != buntut)
+void hapusLast () {
+    busek = bt;
+    ini = kepala;
+    while (ini->next != bt)
     {
-        cur = cur->next;
+        ini = ini->next;
     }
-    buntut = cur;
-    buntut->next = NULL;
-    delete busek;
+    bt = ini;
+    bt->next = NULL;
+    delete busek;  
 }
 
-void cetakLinkedList()
-{
-    cur = kepala;
-    while (cur != NULL)
+void cetakLinkedlist(){
+    ini = kepala;
+    while (ini != NULL)
     {
-        cout << "nama Pelanggan Pembayaran : " << cur->namaPelanggan << endl;
-        cout << "nomor Tagihan Pembayaran : " << cur->nomorTagihan << endl;
-        cout << "Jumlah Tagihan Pembayaran : " << cur->jumlahTagihan << endl;
+        cout << "Judul Buku : " << ini->judul << endl;
+        cout << "Pengarang Buku : " << ini->pengarang << endl;
+        cout << "Tahun terbit Buku : " << ini->thn << endl;
         cout << endl;
-        cur = cur->next;
+    ini = ini->next;
     }
+    
 }
 
-int main()
-{
-    ngisiLinkedList("Yanto", "01", 100000);
-    tambahAwal("Yanti", "02", 200000);
-    tambahGuri("Yatno", "03", 300000);
-    // hapusAwal();
-    // hapusLast();
-    ubahAwal("Yana", "04", 400000);
-    ubahLast("Yani", "05", 500000);
-    cetakLinkedList();
+int main () {
+ ngisiLinkedlist("Ngoding", "bagus", 2025);
+ tambahAwal("Mancing", "eko", 2033);
+ tambahGuri("Sekolah", "wijayanto", 2021);
+//  hapusAwal();
+//  hapusLast();
+ ubahAwal("Senja pagi buta", "uden", 1923);
+ ubahLast("Fajar sore itu", "gamblok", 2000);
+ cetakLinkedlist();
 
-    return 0;
+ return 0;
 }
