@@ -1,0 +1,2 @@
+hapusAwal();
+    // hapusLast();

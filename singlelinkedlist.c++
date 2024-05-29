@@ -97,6 +97,8 @@ int main()
     // hapusLast();
     ubahAwal("Yana", "04", 400000);
     ubahLast("Yani", "05", 500000);
+    // hapusAwal();
+    // hapusLast();
     cetakLinkedList();
 
     return 0;
